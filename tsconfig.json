@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true
+  },
+  "ts-node": {
+    "swc": true,
+    "transpileOnly": true
+  }
+}
