@@ -1,5 +1,4 @@
 // https://zenn.dev/tkithrta/articles/78b203b30f689f
-import fs from "fs";
 import crypto from "crypto";
 import path from "path";
 import fastify from "fastify";
@@ -18,7 +17,7 @@ app.addContentTypeParser(
   app.getDefaultJsonParser()
 );
 
-let private_key_pem = fs.readFileSync("./private.pem", "utf-8");
+let private_key_pem = process.env.PRIVATE_KEY.replaceAll("\\n", "\n");
 if (private_key_pem.startsWith('"')) private_key_pem = private_key_pem.slice(1);
 if (private_key_pem.endsWith('"'))
   private_key_pem = private_key_pem.slice(0, -1);
