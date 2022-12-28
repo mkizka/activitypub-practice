@@ -2,10 +2,7 @@
   "compilerOptions": {
     "target": "esnext",
     "moduleResolution": "node",
-    "esModuleInterop": true
-  },
-  "ts-node": {
-    "swc": true,
-    "transpileOnly": true
+    "esModuleInterop": true,
+    "noEmit": true
   }
 }

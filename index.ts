@@ -1,15 +1,10 @@
 // https://zenn.dev/tkithrta/articles/78b203b30f689f
 import crypto from "crypto";
-import path from "path";
 import fastify from "fastify";
 import axios from "axios";
 
-const app = fastify({ trustProxy: true }) as any;
+const app = fastify({ trustProxy: true, logger: true }) as any;
 
-app.register(require("@fastify/static"), {
-  root: path.join(__dirname, "public"),
-  prefix: "/public/",
-});
 app.addContentTypeParser(
   "application/activity+json",
   { parseAs: "string" },
@@ -563,9 +558,7 @@ app.get("/user/:strName", (req, res) =>
 );
 app.get("/@:strName", (req, res) => res.redirect(`/u/${req.params.strName}`));
 
-app
-  .listen({
-    port: parseInt(process.env.PORT || "8000"),
-    host: process.env.HOSTS || "0.0.0.0",
-  })
-  .then(() => console.log("listen: http://localhost:8000"));
+app.listen({
+  port: parseInt(process.env.PORT || "8000"),
+  host: process.env.HOSTS || "0.0.0.0",
+});
